@@ -95,17 +95,11 @@ These optimization and modeling techniques are integral to the KMAP library's ab
          - `setkin`, `getkin`: Functions for defining and handling sensitive parameters during optimization.  
        
 
-### 3. **MEX Files for each of the models**
-
-## MEX Files for MATLAB
+### 3. **MEX Files for MATLAB**
 
 This directory contains several MEX files for performing kinetic modeling in MATLAB. Precompiled MEX binaries (`*.mexa64` files) are also included and can be used directly in MATLAB without recompilation, provided they are compatible with your system architecture.
 
 Each MEX file is accompanied by detailed instructions on its usage, input, output, and compilation. Please refer to the comments within each MEX source file (`*.cpp`) for precise information on how to work with these files.
-
-### Why OpenMP (OMP) is Used
-
-OpenMP (OMP) is employed in several MEX files to leverage parallel processing with multiple threads, significantly speeding up the curve fitting process when working with a large number of image voxels. By default, the OMP-enabled MEX files are used for better performance. However, non-OMP versions are also available for users who prefer or require single-threaded execution.
 
 ### Compilation Instruction:
 
@@ -177,7 +171,7 @@ The usage command should be run within the MATLAB environment after the MEX file
       ktac_srtm(par, scant, blood, wblood, dk, td)
       ```
 
-### MEX Files for TAC Fitting (without OpenMP)
+### MEX Files for TAC Fitting
 0. **Inputs and Outputs**
    All the input and output variables are the same for different models
    - **Inputs**: 
@@ -244,7 +238,13 @@ The usage command should be run within the MATLAB environment after the MEX file
      ```matlab
      kfit_srtm(tac, w, scant, blood, wblood, dk, pinit, plb, pub, psens, maxit, td)
      ```
-     
+
+### 4. **MEX Files for Parallel Computing**
+
+### Why OpenMP (OMP) is Used
+
+OpenMP (OMP) is also employed in several MEX files to leverage parallel processing with multiple threads, significantly speeding up the time activity curve fitting process when working with a large number of image voxels. By default, the OMP-enabled MEX files are used for better performance. However, non-OMP versions are also available for users who prefer or require single-threaded execution, as provided above.
+
 ### MEX Files for TAC Fitting with OpenMP Parallel Processing
 0. **Inputs and Outputs**
    All the input and output variables are the same for different models
