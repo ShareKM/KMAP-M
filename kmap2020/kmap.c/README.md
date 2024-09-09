@@ -1,37 +1,26 @@
-# Kinetic Modeling Library (KMAP)
-
-## Introduction to Kinetic Models
-
-Kinetic models are mathematical frameworks used to describe the dynamic behavior of biological systems, particularly the movement and transformation of substances within the body over time. In medical imaging, such as Positron Emission Tomography (PET), kinetic models are essential for interpreting the distribution and concentration of radiotracers. These tracers are introduced into the body and tracked as they move through different compartments (e.g., blood, tissues) and undergo biochemical reactions.
-
-### Why We Need Kinetic Models
-
-1. **Quantification of Biological Processes**: Kinetic models allow for the quantification of biological processes such as metabolism, blood flow, and receptor-ligand binding, which are crucial for diagnosing and monitoring diseases.
-  
-2. **Non-invasive Insight**: Through imaging techniques like PET, kinetic models provide non-invasive insights into the functioning of organs and tissues, helping in early detection and accurate monitoring of diseases like cancer, Alzheimer's, and cardiovascular disorders.
-
-3. **Understanding Tracer Kinetics**: By fitting kinetic models to time-activity curves (TACs) derived from PET data, researchers can extract parameters that describe the rates of tracer uptake, binding, and clearance. These parameters are invaluable for clinical and research applications.
+# Kinetic Modeling and Analysis Package (KMAP)
 
 ## Overview of the KMAP Library
 
-The KMAP (Kinetic Modeling Analysis Package) library provides a suite of tools for implementing and applying various kinetic models to PET data. This library includes C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic analysis in a flexible and user-friendly environment.
+The KMAP (Kinetic Modeling and Analysis Package) library provides a suite of code for implementing and applying various kinetic models to analyze dynamic positron emission tomography (PET) data. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic analysis in a flexible and user-friendly environment.
 
 ### Supported Kinetic Models
 
-1. **1-Tissue 3-Parameter Model (1T3P)**
-   - **Description**: A simplified model where the tracer exchanges between plasma and a single tissue compartment.
+1. **1-Tissue Compartmental Model (1TCM)**
+   - **Description**: A compartmental model where the tracer exchanges between plasma and a single tissue compartment.
    - **Parameters**: \( K_1 \) (influx rate), \( k_2 \) (efflux rate), \( V_b \) (vascular fraction).
 
-2. **2-Tissue 5-Parameter Model (2T5P)**
+2. **2-Tissue Compartmental Model (2TCM)**
    - **Description**: A more detailed model with two compartments representing different tissue types or states, providing a richer description of tracer kinetics.
    - **Parameters**: \( K_1 \), \( k_2 \), \( k_3 \) (binding rate), \( k_4 \) (dissociation rate), \( V_b \).
-
+   - If \( k_4=0 \), this is an irreversible 2T model.
+     
 3. **Simplified Reference Tissue Model (SRTM)**
-   - **Description**: This model is used when a reference region devoid of the receptor of interest is available, helping to estimate binding potential without requiring blood samples.
+   - **Description**: This model is used when a reference region devoid of the receptor of interest is available, helping to estimate binding potential without requiring a blood input function.
    - **Parameters**: \( R_1 \) (relative delivery rate), \( k_2 \), \( BP_{nd} \) (binding potential), \( V_b \).
 
-4. **Liver Model**
-   - **Description**: A specialized model accounting for the dynamics in liver tissue, where both plasma and whole blood compartments are considered.
+4. **Liver Dual-Blood Input Function Model**
+   - **Description**: A specialized model accounting for the dual-blood input function in liver tissue, where both hepatic artery and portal vein are considered.
    - **Parameters**: \( K_1 \), \( k_2 \), \( k_3 \), \( k_4 \), \( K_a \), \( f_a \) (fractional arterial blood), \( V_b \).
 
 ### Optimization Methods Used
@@ -39,7 +28,7 @@ The KMAP (Kinetic Modeling Analysis Package) library provides a suite of tools f
 The KMAP library employs several advanced optimization techniques to accurately fit kinetic models to time-activity curve (TAC) data derived from PET imaging.
 
 1. **Levenberg-Marquardt Algorithm**:
-   - **Purpose**: The Levenberg-Marquardt (LM) algorithm is a widely used method for solving nonlinear least squares problems, particularly in the context of curve fitting. In kinetic modeling, it plays a crucial role in adjusting the model parameters so that the computed TAC closely matches the observed data. The algorithm effectively bridges the gap between the steepest descent method and the Gauss-Newton algorithm, providing a balanced approach that is both robust and efficient.
+   - **Purpose**: The Levenberg-Marquardt (LM) algorithm is a widely used classic optimization method for solving nonlinear least squares problems, particularly in the context of time activity curve (TAC) fitting. In kinetic modeling, it plays a crucial role in estimating the model parameters so that the computed TAC closely matches the measured TAC data. The algorithm effectively bridges the gap between the steepest descent method and the Gauss-Newton algorithm, providing a balanced approach that is both robust and efficient.
    
    - **How It Works**: 
      - The LM algorithm iteratively updates the parameters by minimizing the sum of the squared differences between the observed and model-predicted TAC values. It combines the advantages of two methods: 
@@ -48,21 +37,21 @@ The KMAP library employs several advanced optimization techniques to accurately 
      - The LM algorithm introduces a damping factor that adjusts the step size based on the current position in the parameter space. When far from the minimum, the algorithm behaves more like a gradient descent (larger damping), and as it approaches the minimum, it shifts towards the Gauss-Newton method (smaller damping).
 
    - **Implementation**: 
-     - In `kinlib_optimization.cpp`, the LM algorithm is implemented through the `kmap_levmar` function. This function takes in the initial parameter estimates and iteratively refines them by minimizing the residuals (differences between observed and predicted TACs). 
-     - To handle the complexity of multiple parameters, the algorithm also uses a bounded coordinate descent method, which ensures that parameter updates stay within specified bounds, improving the stability and reliability of the optimization process.
+     - In `kinlib_optimization.cpp`, the LM algorithm is implemented through the `kmap_levmar` function. This function takes in the initial parameter estimates and iteratively refines them by minimizing the residuals (differences between measured and predicted TACs). 
+     - To handle the complexity of multiple parameter constraints, the algorithm also uses a bounded coordinate descent method for solving the intermediate quadratic optimization problem, which ensures that parameter updates stay within specified bounds, improving the stability and reliability of the optimization process.
      - The `kmap_levmar` function also incorporates mechanisms to dynamically adjust the damping factor, improving convergence speed and accuracy. The function iteratively recalculates the Jacobian matrix, which represents the sensitivity of the TAC to each model parameter, ensuring that the parameter updates are optimally directed.
 
 2. **Bounded Coordinate Descent**:
-   - **Purpose**: This method is employed to optimize individual parameters while keeping the others fixed. It is particularly effective in situations where the parameters are subject to specific constraints (bounds). The method complements the LM algorithm by refining the parameter estimates within the allowable range.
+   - **Purpose**: This method uses a coordinate descent optimization strategy to solve the intermediate quadratic optimization problem during the LM optimization. It is particularly effective in situations where the parameters are subject to specific constraints (bounds). 
    
-   - **Implementation**: In `kinlib_optimization.cpp`, the `BoundQuadCD` function performs this optimization, iterating over each parameter to minimize the cost function under the constraints of the parameter bounds. This ensures that the optimization process remains stable and that the parameter estimates are physically meaningful.
+   - **Implementation**: In `kinlib_optimization.cpp`, the `BoundQuadCD` function performs this optimization, iterating over each parameter to minimize the quadratic cost function under the constraints of the parameter bounds. This ensures that the optimization process remains stable and that the parameter estimates are physically meaningful.
 
-3. **Convolution Operations**:
-   - **Purpose**: Convolution with exponential functions is essential in kinetic modeling to simulate the tracer's behavior as it transitions between different biological compartments over time.
+3. **Convolution of an Exponential Function and Input Function**:
+   - **Purpose**: Convolution of a single exponential function and the blood input function is a building block for the calculation of the analytical solution for different compartmental models.
    
-   - **Implementation**: The `kconv_exp` function in `kinlib_common.cpp` efficiently handles these convolutions, which are integral to computing the TACs and their sensitivities. This operation directly influences the accuracy of the model fitting process, as it underpins the evaluation of how well the model's predictions align with the observed data.
+   - **Implementation**: The `kconv_exp` function in `kinlib_common.cpp` efficiently handles the numerical calculation of the convolution for computing the model TACs and their sensitivities concerning different model parameters. This operation directly influences the accuracy of the model fitting process, as it underpins the evaluation of how well the model's predictions align with the observed data.
 
-These optimization techniques are integral to the KMAP library's ability to accurately model biological processes observed in PET imaging. By employing a combination of the Levenberg-Marquardt algorithm, bounded coordinate descent, and convolution operations, the library ensures robust and reliable parameter estimation, facilitating meaningful insights into tracer kinetics.
+These optimization and modeling techniques are integral to the KMAP library's ability to accurately model time activity curves in dynamic PET. By employing a combination of the Levenberg-Marquardt algorithm, bounded coordinate descent, and convolution operations, the library ensures robust and reliable parameter estimation, facilitating meaningful insights into tracer kinetics.
 
 ## Repository Structure
 
@@ -77,28 +66,28 @@ These optimization techniques are integral to the KMAP library's ability to accu
 
 ### 2. **Source Files**:
    - **`kinlib_models.cpp`**: 
-     - **Purpose**: Contains the implementations of TAC and Jacobian calculations for the various kinetic models.
+     - **Purpose**: Contains the implementations of TACs and Jacobian calculations for the various kinetic models.
      - **Key Functions**:
        - **TAC Evaluation**:
          - `tac_eval`: Implements the computation of TACs for the given model parameters.
-         - `kconv_1t3p_tac`, `kconv_2t5p_tac`, `kconv_srtm_tac`, `kconv_liver_tac`: Specialized TAC computation functions for the respective models.
+         - `kconv_1tcm_tac`, `kconv_2tcm_tac`, `kconv_srtm_tac`, `kconv_liver_tac`: Specialized TAC computation functions for the respective models.
        - **Jacobian Calculation**:
          - `jac_eval`: Implements the computation of the Jacobian matrix.
-         - `kconv_1t3p_jac`, `kconv_2t5p_jac`, `kconv_srtm_jac`, `kconv_liver_jac`: Specialized Jacobian calculation functions for the respective models.
+         - `kconv_1tcm_jac`, `kconv_2tcm_jac`, `kconv_srtm_jac`, `kconv_liver_jac`: Specialized Jacobian calculation functions for the respective models.
 
    - **`kinlib_optimization.cpp`**:
      - **Purpose**: Contains the implementations of optimization algorithms.
      - **Key Functions**:
        - **Optimization**:
-         - `kmap_levmar`: Implements the Levenberg-Marquardt algorithm to fit the kinetic model to the TAC data by minimizing the difference between observed and modeled TACs.
-         - `BoundQuadCD`: Implements the bounded coordinate descent method for parameter optimization under constraints.
-         - `lema_gsn`: Implements the Levenberg-Marquardt algorithm with additional constraints.
+         - `kmap_levmar`: Implements the Levenberg-Marquardt algorithm to fit a kinetic model to the TAC data by minimizing the difference between measured and modeled TACs.
+         - `BoundQuadCD`: Implements the bounded coordinate descent method for quadratic optimization under constraints.
+         - `lema_gsn`: Implements the Levenberg-Marquardt algorithm with additional constraints. [to be deleted]
 
    - **`kinlib_common.cpp`**:
      - **Purpose**: Contains common functions used across different models and optimizations.
      - **Key Functions**:
        - **Convolution Operations**:
-         - `kconv_exp`: Performs the convolution of input functions with an exponential decay, a key operation in kinetic modeling.
+         - `kconv_exp`: Performs the convolution of the input function with a single exponential function, a key building block for more complex compartmental models.
        - **Other Utility Functions**:
          - `frame`: Computes the average activity within specified time frames.
          - `vecnorm2`, `vecnormw`: Helper functions for vector norm calculations.
