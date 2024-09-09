@@ -6,11 +6,11 @@ The KMAP (Kinetic Modeling and Analysis Package) library provides a suite of cod
 
 ### Supported Kinetic Models
 
-1. **1-Tissue Compartmental Model (1TCM)**
+1. **One-Tissue Compartmental Model (1TCM)**
    - **Description**: A compartmental model where the tracer exchanges between plasma and a single tissue compartment.
    - **Parameters**: \( K_1 \), \( k_2 \), \( V_b \).
 
-2. **2-Tissue Compartmental Model (2TCM)**
+2. **Two-Tissue Compartmental Model (2TCM)**
    - **Description**: A more detailed model with two compartments representing different tissue types or states, providing a richer description of tracer kinetics.
    - **Parameters**: \( K_1 \), \( k_2 \), \( k_3 \), \( k_4 \), \( V_b \).
    - If \( k_4=0 \), this is an irreversible 2T model.
