@@ -4,7 +4,7 @@ function [ct, st] = ktac_liver(k, cp, scant, opt, cwb)
 % two-tissue compartmental model for liver data.
 %
 % Inputs:
-%   - k: Kinetic parameters (e.g., [vb, K1, k2, k3, k4, ka, fa]')
+%   - k: Kinetic parameters (e.g., [vb, K1, k2, k3, k4, ka, fa, time_delay]')
 %   - cp: Plasma input function (concentration over time)
 %   - scant: Scan time matrix [start_time, end_time] (in seconds)
 %   - opt: Options structure (optional) containing additional settings
@@ -22,16 +22,18 @@ function [ct, st] = ktac_liver(k, cp, scant, opt, cwb)
 % Guobao Wang @ 12-10-2016
 %--------------------------------------------------------------------------
 
-% Adapt the input vector 'k' to a standard form of [vb, K1, k2, k3, k4, ka, fa]'
-prm = zeros(7, size(k, 2));
+% Adapt the input vector 'k' to a standard form of [vb, K1, k2, k3, k4, ka, fa, time_delay]'
+prm = zeros(8, size(k, 2));
 
 % Determine the kinetic model based on the number of parameters
-if size(k, 1) == 3  % One-tissue compartment model
-    prm(1:3, :) = k;
-elseif size(k, 1) == 5  % Two-tissue compartment model
-    prm(1:5, :) = k;
-elseif size(k, 1) == 7  % Two-tissue compartment model with additional parameters
-    prm(1:7, :) = k;
+if size(k, 1) == 4  % One-tissue compartment model
+    prm(1:3, :) = k(1:3, :);
+    prm(8,:) = k(4,:);
+elseif size(k, 1) == 6  % Two-tissue compartment model
+    prm(1:5, :) = k(1:5, :);
+    prm(8,:) = k(6,:);
+elseif size(k, 1) == 8  % Two-tissue compartment model with additional parameters
+    prm(1:8, :) = k;
 else
     error('Unmatched size of kinetic parameter input.');
 end

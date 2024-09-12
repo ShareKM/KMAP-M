@@ -32,7 +32,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     double dk, td;
     int num_par, num_vox, num_frm; 
     double *c, *s;
-    int psens[7] = {1, 1, 1, 1, 1, 1, 1};  // Default sensitivity for 7 parameters
+    int psens[8] = {1, 1, 1, 1, 1, 1, 1, 1};  // Default sensitivity for 7 parameters
   
     // Retrieve input arguments from MATLAB
     par = mxGetPr(prhs[0]);  

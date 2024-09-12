@@ -3,16 +3,16 @@
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // This file implements the computation of the time activity curve (TAC) and its
-// Jacobian for a one-tissue kinetic model (1T3P) within the MATLAB environment.
+// Jacobian for a one-tissue kinetic model (1TCM) within the MATLAB environment.
 //
 // Usage:
-// ktac_1t3p(par, scant, blood, wblood, dk, td)
+// ktac_1tcm(par, scant, blood, wblood, dk, td)
 //
 // Compilation Instruction:
-// mex ktac_1t3p_mex.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output ktac_1t3p
+// mex ktac_1tcm_mex.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output ktac_1tcm
 //
-// This will produce a MEX file named 'ktac_1t3p', which you can call from MATLAB 
-// as ktac_1t3p(...) with the same arguments as described above.
+// This will produce a MEX file named 'ktac_1tcm', which you can call from MATLAB 
+// as ktac_1tcm(...) with the same arguments as described above.
 //
 // Input parameters:
 // - par: Model parameters.
@@ -32,7 +32,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     double dk, td;
     int num_par, num_vox, num_frm; 
     double *c, *s;
-    int psens[3] = {1, 1, 1};  // Default sensitivity for 3 parameters
+    int psens[4] = {1, 1, 1, 1};  // Default sensitivity for 3 parameters
   
     // Retrieve input arguments from MATLAB
     par = mxGetPr(prhs[0]);  
@@ -55,8 +55,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     
     // Perform voxel-wise computation
     if (nlhs == 1) {
-        kconv_1t3p_tac(par, dk, scant, td, b, wb, num_frm, num_vox, c);
+        kconv_1tcm_tac(par, dk, scant, td, b, wb, num_frm, num_vox, c);
     } else if (nlhs > 1) {
-        kconv_1t3p_jac(par, dk, scant, td, b, wb, num_frm, num_vox, c, psens, s);
+        kconv_1tcm_jac(par, dk, scant, td, b, wb, num_frm, num_vox, c, psens, s);
     }
 }

@@ -1,10 +1,10 @@
-function [ct, st] = ktac_2t5p(k, cp, scant, opt, cwb)
+function [ct, st] = ktac_2tcm(k, cp, scant, opt, cwb)
 %--------------------------------------------------------------------------
 % Generate time-activity curves (TACs) using the two-tissue compartmental model.
 %
 % Inputs:
 % - k: Kinetic parameters. This can be a vector or matrix containing the
-%      parameters [vb, K1, k2, k3, k4]'.
+%      parameters [vb, K1, k2, k3, k4, time_delay]'.
 % - cp: Plasma concentration data.
 % - scant: Scan time data, expected as a two-column matrix where each row 
 %          represents [start_time, end_time] in seconds.
@@ -18,18 +18,19 @@ function [ct, st] = ktac_2t5p(k, cp, scant, opt, cwb)
 % - st: Sensitivity matrix, which provides the derivatives of the TAC with 
 %       respect to each kinetic parameter. This is only computed if required.
 %
-% This function serves as a wrapper for the compiled MEX function `ktac_2t5p_mex`,
+% This function serves as a wrapper for the compiled MEX function `ktac_2tcm_mex`,
 % which performs the actual computation of TACs based on the input kinetic parameters.
 %
 % Guobao Wang @ 12-10-2009
 %
 %--------------------------------------------------------------------------
 
-% Adapt the input vector to [vb K1 k2 k3 k4]'
-prm = zeros(5, size(k, 2));
-if size(k, 1) == 3     % One-tissue compartment model
-    prm(1:3, :) = k;
-elseif size(k, 1) == 5 % Two-tissue compartment model
+% Adapt the input vector to [vb K1 k2 k3 k4, time_delay]'
+prm = zeros(6, size(k, 2));
+if size(k, 1) == 4     % One-tissue compartment model
+    prm(1:3, :) = k(1:3,:);
+    prm(6,:) = k(4,:);
+elseif size(k, 1) == 6 % Two-tissue compartment model
     prm(1:size(k, 1), :) = k;
 else
     error('Unmatched size of kinetic parameter input.');
@@ -91,9 +92,9 @@ end
 
 % Generate TACs and sensitivity matrix using the compiled MEX function
 if nargout == 2 && size(prm, 2) == 1
-    [ct, st] = ktac_2t5p_mex(prm, scant, cp, cwb, dk, td);
+    [ct, st] = ktac_2tcm_mex(prm, scant, cp, cwb, dk, td);
 else
-    ct = ktac_2t5p_mex(prm, scant, cp, cwb, dk, td);
+    ct = ktac_2tcm_mex(prm, scant, cp, cwb, dk, td);
     st = [];
 end
 

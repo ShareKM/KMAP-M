@@ -3,13 +3,20 @@
 #include <omp.h>
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// This file implements the fitting of a one-tissue kinetic model (1T3P) using 
+// This file implements the fitting of a two-tissue kinetic model (2TCM) using
 // the Levenberg-Marquardt algorithm with OpenMP for parallel processing 
 // within the MATLAB environment.
 //
 // Usage: 
-// kfit_1t3p_mex_omp(tac, w, scant, blood, wblood, dk, pinit, lb, ub, psens, maxit, td)
-// 
+// kfit_2tcm_mex_omp(tac, w, scant, blood, wblood, dk, pinit, lb, ub, psens, maxit, td)
+//
+// Compilation Instruction:
+// mex kfit_2tcm_mex_omp.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp 
+// CXXFLAGS="\$CXXFLAGS -fopenmp" LDFLAGS="\$LDFLAGS -fopenmp"
+//
+// This will produce a MEX file named 'kfit_2tcm_mex_omp', which you can call from MATLAB 
+// as kfit_2tcm_mex_omp(...) with the same arguments as described above.
+
 // Input parameters:
 // - tac: Time activity curve (TAC) data.
 // - w: Weights for the TAC data.
@@ -27,13 +34,6 @@
 // Output:
 // - p: Estimated parameters.
 // - c: Fitted curve.
-//
-// Compilation Instruction:
-// mex kfit_1t3p_mex_omp.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp
-// CXXFLAGS="\$CXXFLAGS -fopenmp" LDFLAGS="\$LDFLAGS -fopenmp"
-//
-// This will produce a MEX file named 'kfit_1t3p_mex_omp', which you can call from MATLAB 
-// as kfit_1t3p_mex_omp(...) with the same arguments as described above.
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
 
@@ -42,7 +42,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     double dk;
     double *pinit;
     int num_frm, num_vox, num_par, np, nw;
-    int psens[3];
+    int psens[6];
     double *temp;
     int maxit; 
     double *p, *c;
@@ -77,8 +77,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     km.num_frm = num_frm;
     km.num_vox = 1; // Process one voxel at a time
     km.scant = scant;
-    km.tacfunc = kconv_1t3p_tac; // TAC function for 1T3P model
-    km.jacfunc = kconv_1t3p_jac; // Jacobian function for 1T3P model
+    km.tacfunc = kconv_2tcm_tac; // TAC function for 2TCM model
+    km.jacfunc = kconv_2tcm_jac; // Jacobian function for 2TCM model
 
     // Label sensitive parameters
     if (num_par == 1) {
