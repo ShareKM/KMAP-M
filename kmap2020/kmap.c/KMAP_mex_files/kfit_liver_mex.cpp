@@ -2,17 +2,17 @@
 #include "kinlib.h"
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// This file implements the fitting of a Simplified Reference Tissue Model (SRTM)
-// using the Levenberg-Marquardt algorithm within the MATLAB environment.
+// This file implements the fitting of a liver kinetic model using the 
+// Levenberg-Marquardt algorithm within the MATLAB environment.
 //
 // Usage: 
-// kfit_srtm(tac, w, scant, blood, wblood, dk, pinit, plb, pub, psens, maxit, td) 
+// kfit_liver(tac, w, scant, blood, wblood, dk, pinit, lb, ub, psens, maxit, td)
 //
 // Compilation Instruction:
-// mex kfit_srtm_mex.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output kfit_srtm
+// mex kfit_liver_mex.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output kfit_liver
 //
-// This will produce a MEX file named 'kfit_srtm', which you can call from MATLAB 
-// as kfit_srtm(...) with the same arguments as described above.
+// This will produce a MEX file named 'kfit_liver', which you can call from 
+// MATLAB as kfit_liver(...) with the same arguments as described above.
 //
 // Input parameters:
 // - tac: Time activity curve (TAC) data.
@@ -35,37 +35,37 @@
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
 
     int i, j;
-    double *tac, *w, *scant, *cp, *wb;
+    double *tac, *w, *scant, *cp, *wb, *w1;
     double dk;
     double *pinit;
     int num_frm, num_vox, num_par, np, nw;
-    int psens[5];
+    int psens[8];
     double *temp;
     int maxit; 
     double *p, *c, *cj, *wj, *pj, *cfit;
     double *plb, *pub;
     double td;
     KMODEL_T km;
-  
+   
     // Retrieve input arguments from MATLAB
     tac = mxGetPr(prhs[0]);  
-    num_frm = (int) mxGetM(prhs[0]);
-    num_vox = (int) mxGetN(prhs[0]);
-    w = mxGetPr(prhs[1]);
-    nw = mxGetN(prhs[1]);   
+    num_frm = (int)mxGetM(prhs[0]);
+    num_vox = (int)mxGetN(prhs[0]);
+    nw = mxGetN(prhs[1]);  
+    w1 = mxGetPr(prhs[1]);  
     scant = mxGetPr(prhs[2]);      
     cp = mxGetPr(prhs[3]); 
     wb = mxGetPr(prhs[4]); 
     dk = mxGetScalar(prhs[5]);
     pinit = mxGetPr(prhs[6]); 
-    num_par = (int) mxGetM(prhs[6]);
-    np = (int) mxGetN(prhs[6]);
+    num_par = mxGetM(prhs[6]);
+    np = (int)mxGetN(prhs[6]);
     plb = mxGetPr(prhs[7]);
     pub = mxGetPr(prhs[8]);
     temp = mxGetPr(prhs[9]);
-    maxit = (int) mxGetScalar(prhs[10]);
+    maxit = (int)mxGetScalar(prhs[10]);
     td = mxGetScalar(prhs[11]);
-    
+  
     // Set up the kinetic model parameters
     km.dk = dk;
     km.td = td;
@@ -74,8 +74,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     km.num_frm = num_frm;
     km.num_vox = 1; // Process one voxel at a time
     km.scant = scant;
-    km.tacfunc = kconv_srtm_tac; // TAC function for SRTM model
-    km.jacfunc = kconv_srtm_jac; // Jacobian function for SRTM model
+    km.tacfunc = kconv_liver_tac; // TAC function for liver model
+    km.jacfunc = kconv_liver_jac; // Jacobian function for liver model
   
     // Label sensitive parameters
     if (num_par == 1) {
@@ -106,11 +106,10 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
             }
         }
     }
-  
+
     // Voxel-wise fitting
-    for (j = 0; j < num_vox; j++) 
-    {
-    
+    for (j = 0; j < num_vox; j++) {
+        // Extract the current voxel's TAC and weights
         cj = tac + j * num_frm;
         if (nw == num_vox) {
             wj = w + j * num_frm;
@@ -118,8 +117,9 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
             wj = w;    
         }
         pj = p + j * num_par;
-    
         cfit = c + j * num_frm;
+
+        // Perform Levenberg-Marquardt fitting for the current voxel
         kmap_levmar(cj, wj, num_frm, pj, num_par, &km, tac_eval, jac_eval, plb, pub, 
                     psens, maxit, cfit);
     }

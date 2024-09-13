@@ -8,7 +8,7 @@ function [k, cfit, ctis] = kfit_liver(ct, cp, scant, k0, opt, wt, cwb)
 %   - ct: Measured time-activity curve data.
 %   - cp: Plasma input function.
 %   - scant: Scan time data, in seconds.
-%   - k0: Initial kinetic parameters [va, K1, k2, k3, k4, ka, fa].
+%   - k0: Initial kinetic parameters [va, K1, k2, k3, k4, ka, fa, time_delay].
 %   - opt: Options structure for fitting, including bounds and settings.
 %   - wt: Frame weights (optional).
 %   - cwb: Whole blood data (optional).
@@ -40,15 +40,15 @@ if size(scant, 2) ~= 2
     error('Incorrect scan time input.');
 end
 
-% Initial kinetic parameters [va K1 k2 k3 k4 ka fa]
+% Initial kinetic parameters [va K1 k2 k3 k4 ka fa time_delay]
 if isempty(k0)
-    k0 = [0.05, 0.1, 0.1, 0.1, 0.01, 1, 0]; % Default initial parameters
+    k0 = [0.05, 0.1, 0.1, 0.1, 0.01, 1, 0, 0]; % Default initial parameters
 end
 if isvector(k0)
     k0 = repmat(k0(:), [1, size(ct, 2)]); % Replicate initial parameters for all curves
 end
-kinit = zeros(7, size(k0, 2));
-if size(k0, 1) == 7
+kinit = zeros(8, size(k0, 2));
+if size(k0, 1) == 8
     kinit(1:size(k0, 1), :) = k0; % Initialize kinit with the provided k0
 else
     error('Unmatched size of kinetic parameter input.');
@@ -68,29 +68,29 @@ end
 
 % Set lower bounds for the parameters
 if isempty(opt.LowerBound)
-    lb = [0, 0, 0, 0, 0, 0, 0]; % Default lower bounds
-elseif length(opt.LowerBound) == 7
+    lb = [0, 0, 0, 0, 0, 0, 0, 0]; % Default lower bounds
+elseif length(opt.LowerBound) == 8
     lb = opt.LowerBound;
 else
-    error('Size of lower bounds should be 7.');
+    error('Size of lower bounds should be 8.');
 end
 
 % Set upper bounds for the parameters
 if isempty(opt.UpperBound)
-    ub = [1.0, 10, 5.0, 1.0, 0.1, 100, 1]; % Default upper bounds
-elseif length(opt.UpperBound) == 7
+    ub = [1.0, 10, 5.0, 1.0, 0.1, 100, 1, 20]; % Default upper bounds
+elseif length(opt.UpperBound) == 8
     ub = opt.UpperBound;
 else
-    error('Size of upper bounds should be 7.');
+    error('Size of upper bounds should be 8.');
 end
 
 % Set parameter sensitivity (which parameters to fit)
 if isempty(opt.PrmSens)
-    ps = [1, 1, 1, 1, 1, 1, 1]; % Default to fitting all parameters
-elseif length(opt.PrmSens) == 7
+    ps = [1, 1, 1, 1, 1, 1, 1, 1]; % Default to fitting all parameters
+elseif length(opt.PrmSens) == 8
     ps = opt.PrmSens;
 else
-    error('Size of active label should be 7.');
+    error('Size of active label should be 8.');
 end
 
 % Set the maximum number of iterations for the optimization

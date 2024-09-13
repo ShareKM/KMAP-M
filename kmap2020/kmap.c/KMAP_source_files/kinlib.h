@@ -73,19 +73,19 @@ void frame(double *scant, double td, double *c_t, int num_frm, int num_c, double
 void kconv_exp(double k1, double k2, double *u, int num_time, double td, double *c);
 
 /*
- * kconv_2t5p_tac
+ * kconv_2tcm_tac
  * 
  * Calculates the TAC for a 2-tissue compartment model with 5 parameters.
  */
-void kconv_2t5p_tac(double *p, double dk, double *scant, double td, double *cp, 
+void kconv_2tcm_tac(double *p, double dk, double *scant, double td, double *cp, 
                     double *wb, int num_frm, int num_vox, double *ct);
 
 /*
- * kconv_2t5p_jac
+ * kconv_2tcm_jac
  * 
  * Calculates the Jacobian for a 2-tissue compartment model with 5 parameters.
  */
-void kconv_2t5p_jac(double *p, double dk, double *scant, double td, double *cp, 
+void kconv_2tcm_jac(double *p, double dk, double *scant, double td, double *cp, 
                     double *wb, int num_frm, int num_vox, double *ct, int *psens, 
                     double *st);
 
@@ -107,19 +107,19 @@ void kconv_srtm_jac(double *p, double dk, double *scant, double td, double *cr0,
                     double *st);
 
 /*
- * kconv_1t3p_tac
+ * kconv_1tcm_tac
  * 
  * Calculates the TAC for a 1-tissue compartment model with 3 parameters.
  */
-void kconv_1t3p_tac(double *p, double dk, double *scant, double td, double *cp, 
+void kconv_1tcm_tac(double *p, double dk, double *scant, double td, double *cp, 
                     double *wb, int num_frm, int num_vox, double *ct);
 
 /*
- * kconv_1t3p_jac
+ * kconv_1tcm_jac
  * 
  * Calculates the Jacobian for a 1-tissue compartment model with 3 parameters.
  */
-void kconv_1t3p_jac(double *p, double dk, double *scant, double td, double *cp, 
+void kconv_1tcm_jac(double *p, double dk, double *scant, double td, double *cp, 
                     double *wb, int num_frm, int num_vox, double *ct, int *psens, 
                     double *st);
 
@@ -194,17 +194,6 @@ double vecnorm2(double *x, int num);
 double vecnormw(double *w, double *x, int num);
 
 /*
- * lema_gsn
- * 
- * Implements the Levenberg-Marquardt algorithm with additional constraints 
- * for minimizing the least squares problem.
- */
-void lema_gsn(double *w, double *y, double *f, int num_y, double *p, int num_p, 
-              void *param, void (*func)(double *, void *, double *),
-              void (*jacf)(double *, void *, double *, int *, double *),
-              double *plb, double *pub, int *psens, int maxit);
-
-/*
  * BoundQuadCD
  * 
  * Implements a coordinate descent algorithm for solving the quadratic 
@@ -213,3 +202,18 @@ void lema_gsn(double *w, double *y, double *f, int num_y, double *p, int num_p,
 void BoundQuadCD(double *g, double *H, double *x, int num_par, double mu, 
                  int maxit, double *xmin, double *xmax);
 
+/*----------------------------------------------------------------------------*/
+/*                          Time   Delay  Correction                          */
+/*----------------------------------------------------------------------------*/
+
+/*
+ * time_delay_jac
+ * compute gradient for time delay correction
+ */
+void time_delay_jac(double *tac, int tac_size, double delay_time, double td, double *out);
+
+/*
+ * time_delay_tac
+ * compute time-delayed TAC curve
+ */
+void time_delay_tac(double* input, int size, double delay_time, double td, double *out);

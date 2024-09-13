@@ -2,17 +2,17 @@
 #include "kinlib.h"
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// This file implements the fitting of a two-tissue kinetic model (2T5P) using
+// This file implements the fitting of a two-tissue kinetic model (2TCM) using
 // the Levenberg-Marquardt algorithm within the MATLAB environment.
 //
 // Usage: 
-// kfit_2t5p(tac, w, scant, blood, wblood, dk, pinit, plb, pub, psens, maxit, td)
+// kfit_2tcm(tac, w, scant, blood, wblood, dk, pinit, plb, pub, psens, maxit, td)
 //
 // Compilation Instruction:
-// mex kfit_2t5p_mex.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output kfit_2t5p
+// mex kfit_2tcm_mex.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output kfit_2tcm
 //
-// This will produce a MEX file named 'kfit_2t5p', which you can call from MATLAB 
-// as kfit_2t5p(...) with the same arguments as described above.
+// This will produce a MEX file named 'kfit_2tcm', which you can call from MATLAB 
+// as kfit_2tcm(...) with the same arguments as described above.
 //
 // Input parameters:
 // - tac: Time activity curve (TAC) data.
@@ -39,7 +39,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     double dk;
     double *pinit;
     int num_frm, num_vox, num_par, np, nw;
-    int psens[5];
+    int psens[6];
     double *temp;
     int maxit; 
     double *p, *c, *cj, *wj, *pj, *cfit;
@@ -74,8 +74,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     km.num_frm = num_frm;
     km.num_vox = 1; // Process one voxel at a time
     km.scant = scant;
-    km.tacfunc = kconv_2t5p_tac; // TAC function for 2T5P model
-    km.jacfunc = kconv_2t5p_jac; // Jacobian function for 2T5P model
+    km.tacfunc = kconv_2tcm_tac; // TAC function for 2TCM model
+    km.jacfunc = kconv_2tcm_jac; // Jacobian function for 2TCM model
 
     // Label sensitive parameters
     if (num_par == 1) {
@@ -117,8 +117,12 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
             wj = w;    
         }
         pj = p + j * num_par;
-    
         cfit = c + j * num_frm;
-        lema_gsn(wj, cj, cfit, num_frm, pj, num_par, &km, tac_eval, jac_eval, plb, pub, psens, maxit);
+
+        // Perform Levenberg-Marquardt fitting
+        kmap_levmar(cj, wj, num_frm, pj, num_par, &km, tac_eval, jac_eval, plb, pub, psens, maxit, cfit);
     }
 }
+
+
+

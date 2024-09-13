@@ -11,11 +11,10 @@
 // kfit_liver(tac, w, scant, blood, wblood, dk, pinit, lb, ub, psens, maxit, td)
 //
 // Compilation Instruction:
-// mex kfit_liver_mex_omp.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output kfit_liver CXXFLAGS="\$CXXFLAGS -fopenmp" LDFLAGS="\$LDFLAGS -fopenmp"
-
+// mex kfit_liver_mex_omp.cpp kinlib_models.cpp kinlib_optimization.cpp kinlib_common.cpp -output kfit_liver_mex_omp CXXFLAGS="\$CXXFLAGS -fopenmp" LDFLAGS="\$LDFLAGS -fopenmp"
 //
-// This will produce a MEX file named 'kfit_liver', which you can call from 
-// MATLAB as kfit_liver(...) with the same arguments as described above.
+// This will produce a MEX file named 'kfit_liver_mex_omp', which you can call from 
+// MATLAB as kfit_liver_mex_omp(...) with the same arguments as described above.
 //
 // Input parameters:
 // - tac: Time activity curve (TAC) data.
@@ -42,7 +41,7 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]) {
     double dk;
     double *pinit;
     int num_frm, num_vox, num_par, np, nw;
-    int psens[7];
+    int psens[8];
     double *temp;
     int maxit; 
     double *p, *c;
