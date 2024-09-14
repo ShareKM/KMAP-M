@@ -29,7 +29,7 @@ The DavisKMAP library provides a suite of code for implementing and applying var
    - **Parameters**: \( K_1 \), \( k_2 \), \( k_3 \), \( k_4 \), \( K_a \), \( f_a \), \( V_b \).
 
 All the kinetic models include an additional model parameter for time-delay correction, which is particularly important in total-body kinetic modeling.
-Note that additional models that can be efficiently implemented in MATLAB, such as the Patlak plot, are currently not included in this C/C++ package but directly in the MATLAB package. 
+Note that additional models that can be efficiently implemented in MATLAB, such as the Patlak plot, are currently not included in this C/C++ package but are directly added in the MATLAB package. 
 
 ### For Further Instructions
 
