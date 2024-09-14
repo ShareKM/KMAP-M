@@ -203,7 +203,7 @@ void time_delay_jac(double *tac, int tac_size, double delay_time, double td, dou
    td: time step size
    out: output gradient vector
 
-   Created by Yiran Wang, modified by Yansong Zhu @ UC Davis
+   Created by Yiran Wang in 2023, modified by Yansong Zhu in 2024 @ UC Davis
 */
 int n = floor(delay_time/td);
 for(int m=0; m<tac_size; m++){
