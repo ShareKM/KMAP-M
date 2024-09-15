@@ -11,7 +11,7 @@ This folder contains the core C++ source code files used to define and implement
        - `tac_eval`: Computes TACs for given model parameters.
        - `kconv_1tcm_tac`, `kconv_2tcm_tac`, `kconv_srtm_tac`, `kconv_liver_tac`: Specialized TAC computation functions for the respective models.
      - **Jacobian Calculation**:
-       - `jac_eval`: Computes the Jacobian matrix for TACs.
+       - `jac_eval`: Computes the Jacobian matrix for TACs with respect to the kinetic parameters.
        - `kconv_1tcm_jac`, `kconv_2tcm_jac`, `kconv_srtm_jac`, `kconv_liver_jac`: Specialized Jacobian calculation functions.
 
 2. **`kinlib_optimization.cpp`**:

@@ -1,12 +1,12 @@
-# Kinetic Modeling and Analysis Package (KMAP)
+# UC Davis Kinetic Modeling and Analysis Package (DavisKMAP)
 
 ## Overview of the KMAP Library
 
-The KMAP (Kinetic Modeling and Analysis Package) library provides a suite of code for implementing and applying various kinetic models to analyze dynamic positron emission tomography (PET) data. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic analysis in a flexible and user-friendly environment.
+The DavisKMAP library provides a suite of code for implementing and applying various tracer kinetic models to analyze dynamic positron emission tomography (PET) data. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic modeling and analysis in a flexible and user-friendly environment.
 
 ### Directory Structure
 
-1. **`KMAP_source_files`**: Contains all the source files used for kinetic modeling, optimization, and common functions.
+1. **`KMAP_source_files`**: Contains all the C/C++ source files used for kinetic modeling, optimization, and common functions.
 2. **`KMAP_mex_files`**: Contains the MEX files and their precompiled binaries for executing in MATLAB, along with all related code.
 
 ## Supported Kinetic Models
@@ -27,6 +27,9 @@ The KMAP (Kinetic Modeling and Analysis Package) library provides a suite of cod
 4. **Liver Dual-Blood Input Function Model**
    - **Description**: A specialized model accounting for the dual-blood input function in liver tissue, where both hepatic artery and portal vein are considered.
    - **Parameters**: \( K_1 \), \( k_2 \), \( k_3 \), \( k_4 \), \( K_a \), \( f_a \), \( V_b \).
+
+All the kinetic models include an additional model parameter for time-delay correction, which is particularly important in total-body kinetic modeling.
+Note that additional models that can be efficiently implemented in MATLAB, such as the Patlak plot, are currently not included in this C/C++ package but are directly added in the MATLAB package. 
 
 ### For Further Instructions
 
