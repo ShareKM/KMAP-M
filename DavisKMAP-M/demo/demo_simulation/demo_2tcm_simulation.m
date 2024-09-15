@@ -1,9 +1,7 @@
 % This is a demo file to test 2TCM model with simulation data
 clear; clc
 
-run('../../DIRECT_v1.0/setup.m');
-addpath('../../DIRECT_v1.0/');
-addpath('../../kmap2020/kmap.c/KMAP_mex_files/');
+run('../../setup.m');
 % scan time setting
 dt = [ones(6,1)*10;  ones(2,1)*30;  ones(6,1)*60; ones(5,1)*120; ones(4,1)*180; ones(6,1)*300;];
 scant = [cumsum([0; dt(1:end-1)]), cumsum(dt)];
