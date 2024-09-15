@@ -1,6 +1,6 @@
 # Davis Kinetic Modeling and Analysis Package (DavisKMAP)
 
-## Overview of DavisKMAP
+## Overview
 
 DavisKMAP offers a collection of source code and wrapper functions designed to implement and apply different tracer kinetic models for analyzing dynamic positron emission tomography (PET) data, particularly considering the challenges emerging in total-body PET kinetic modeling. The primary objective of this open-source package is to share tracer kinetic modeling techniques and offer kinetic modeling developers a foundation to build upon without starting from scratch. The original version of the code is developed at the University of California Davis.
 
