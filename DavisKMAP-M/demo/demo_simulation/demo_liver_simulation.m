@@ -1,9 +1,7 @@
 % This is a demo file to test 2T Liver model with simulation data
 clear; clc
 
-addpath('../../DIRECT_v1.0/utils/');
-addpath('../../DIRECT_v1.0/');
-addpath('../../kmap2020/kmap.c/KMAP_mex_files/');
+run('../../setup.m');
 % scan time setting
 dt = [ones(30,1)*10;  ones(10,1)*60; ones(9,1)*300;];
 scant = [cumsum([0; dt(1:end-1)]), cumsum(dt)];
