@@ -2,7 +2,7 @@
 
 ## Overview
 
-**DavisKMAP** offers a collection of source code and wrapper functions designed to implement and apply different tracer kinetic models for analyzing dynamic positron emission tomography (PET) data, particularly in response to the challenges emerging in total-body PET kinetic modeling. The primary objective of this open-source package is to share tracer kinetic modeling techniques and offer kinetic modeling developers a foundation to build upon without starting from scratch. The original version of the KMPA code was developed at the University of California, Davis. The open-source effort is initiated as a part of the [Open Kinetic Modeling Initiative (OpenKMI)](https://www.openkmi.org/).
+**DavisKMAP** offers a collection of source code and wrapper functions designed to implement and apply different tracer kinetic models for analyzing dynamic positron emission tomography (PET) data, particularly in response to the challenges emerging in total-body PET kinetic modeling. The primary objective of this open-source package is to share tracer kinetic modeling techniques and offer kinetic modeling developers a foundation to build upon without starting from scratch. The package is originally developed at the University of California, Davis. Its open-source effort is initiated as a part of the [Open Kinetic Modeling Initiative (OpenKMI)](https://www.openkmi.org/).
 
 This package includes 
 - `DavisKMAP-C`: The C/C++ source code for implementing different kinetic modeling methods and the associated MEX files that facilitate seamless integration with MATLAB.
