@@ -1,8 +1,8 @@
-# DavisKMAP C Library
+# DavisKMAP-C Library
 
-## Overview of the KMAP-C Library
+## Overview of the DavisKMAP-C Library
 
-The DavisKMAP-C library provides a suite of C/C++ code for implementing and applying various tracer kinetic models as the backbone of the DavisKMAP. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic modeling and analysis in a flexible and user-friendly environment.
+The DavisKMAP-C library provides a suite of C/C++ code for implementing and applying various tracer kinetic models as the backbone of DavisKMAP. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB. Extensions to other programming language are also possible in the future.
 
 ### Directory Structure
 
@@ -29,6 +29,7 @@ The DavisKMAP-C library provides a suite of C/C++ code for implementing and appl
    - **Parameters**: \( K_1 \), \( k_2 \), \( k_3 \), \( k_4 \), \( K_a \), \( f_a \), \( V_b \).
 
 All the kinetic models include an additional model parameter for time-delay correction, which is particularly important in total-body kinetic modeling.
+
 Note that additional models that can be efficiently implemented in MATLAB, such as the Patlak plot, are currently not included in this C/C++ package but are directly added in the MATLAB package. 
 
 ### For Further Instructions
