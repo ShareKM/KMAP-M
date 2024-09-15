@@ -1,8 +1,8 @@
-# UC Davis Kinetic Modeling and Analysis Package (DavisKMAP)
+# DavisKMAP C Library
 
-## Overview of the KMAP Library
+## Overview of the KMAP-C Library
 
-The DavisKMAP library provides a suite of code for implementing and applying various tracer kinetic models to analyze dynamic positron emission tomography (PET) data. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic modeling and analysis in a flexible and user-friendly environment.
+The DavisKMAP-C library provides a suite of C/C++ code for implementing and applying various tracer kinetic models as the backbone of the DavisKMAP. This library includes C/C++ code and MEX files that facilitate seamless integration with MATLAB, enabling efficient kinetic modeling and analysis in a flexible and user-friendly environment.
 
 ### Directory Structure
 
