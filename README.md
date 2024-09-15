@@ -1,4 +1,4 @@
-# UCDavis Kinetic Modeling and Analysis Package (DavisKMAP)
+# Davis Kinetic Modeling and Analysis Package (DavisKMAP)
 
 ## Overview of DavisKMAP
 
@@ -8,7 +8,7 @@ This package includes
 - `DavisKMAP-C`: The C/C++ source code for implementing different kinetic modeling methods and the associated MEX files that facilitate seamless integration with MATLAB.
 - `DavisKMAP-M`: A MATLAB toolbox built on the DavisKMAP-C for tracer kinetic modeling and can be independently used in MATLAB under Windows, Linux, and Macintosh systems. Recompiling may be needed if the pre-compiled files do not work.
 
-## Note
+## Ongoing Effort
 
 This open-source package is provided "as is", without warranty. Our team is still iterating many functions in this package. 
 
