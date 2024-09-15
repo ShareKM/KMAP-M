@@ -10,7 +10,7 @@ This package includes
 
 ## Note
 
-This package is provided "as is", without warranty. Our team is still iterating many functions in this package. 
+This open-source package is provided "as is", without warranty. Our team is still iterating many functions in this package. 
 
 ## Licensing
 
