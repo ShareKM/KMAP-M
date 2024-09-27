@@ -6,7 +6,7 @@
 
 This package includes 
 - `KMAP-C`: The C/C++ source code for implementing different kinetic modeling methods and the associated MEX files that facilitate seamless integration with MATLAB.
-- `KMAP-M`: A MATLAB toolbox built on the DavisKMAP-C for tracer kinetic modeling and can be independently used in MATLAB under Windows, Linux, and Macintosh systems. Recompiling may be needed if the pre-compiled files do not work.
+- `KMAP-M`: A MATLAB toolbox built on the KMAP-C for tracer kinetic modeling and can be independently used in MATLAB under Windows, Linux, and Macintosh systems. Recompiling may be needed if the pre-compiled files do not work.
 
 ## Ongoing Effort
 
