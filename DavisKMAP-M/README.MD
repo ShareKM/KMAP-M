@@ -57,12 +57,21 @@ This folder contains MATLAB wrapper functions that are designed to interact with
      - `ct`: Generated time-activity curve.
      - `st`: Sensitivity matrix (optional).
 
+5. **run_ParametricImage.m**  
+   This function is a example to show how to generate parametric image with the kinetic models from KMAP package. This function currently use 'kfit_2tcm' to provide 0T/1T/2Ti models for TAC fitting but other models can also be included. 
+   - **Inputs**: 
+     - `dynImgInp`: path to input dynamic images.
+     - `foldOut`: path to store output parametric images.
+     - `fileBIF`: path to input function.
+     - `Dopt`: Optional settings structure.
+'Note': This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code. The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
+
 ## Usage Instructions
 
-Before using any of these wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`, `ktac_2tcm_mex`, and `ktac_liver_mex`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `kmap2020/KMAP_mex_files` directory.
+Before using any of these wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`, `ktac_2tcm_mex`, and `ktac_liver_mex`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `DavisKMAP-C/KMAP_mex_files` directory.
 
 **Note:** The folder `kmap2020/KMAP_mex_files` contains both the MEX files and their precompiled binaries for different operating systems.  
-- **Precompiled Binaries**: The precompiled MEX binaries for Windows, Linux, and macOS are organized in separate subdirectories within `kmap2020/KMAP_mex_files`. Use the binaries corresponding to your system architecture (`*.mexw64`, `*.mexa64`, or `*.mexmaci64`).
+- **Precompiled Binaries**: The precompiled MEX binaries for Windows, Linux, and macOS are organized in separate subdirectories within `DavisKMAP-C/KMAP_mex_files`. Use the binaries corresponding to your system architecture (`*.mexw64`, `*.mexa64`, or `*.mexmaci64`).
 - If you wish to recompile the MEX binaries, refer to the `README.md` file inside the `KMAP_mex_files` folder for compilation instructions.
 
 For example, to use the `kfit_2tcm.m` wrapper, you can call the function like this:
