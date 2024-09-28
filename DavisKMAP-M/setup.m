@@ -13,3 +13,4 @@ end
 path([kmapdir 'demo'], path);       % demo
 path([kmapdir 'utils'], path);      % utils
 path([kmapdir 'fit'], path);        % fitting
+path(genpath([kmapdir 'Precompiled_Binaries']), path);  % binary files

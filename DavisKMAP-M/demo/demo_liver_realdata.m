@@ -1,8 +1,8 @@
 % This is a demo file to test 2T Liver model with real TAC data
 clear; clc
 
-run('../../setup.m');
-addpath('./data/');
+run('../setup.m');
+addpath('../data/');
 % load data
 load('demo_liver_realdata.mat');
 tac = Liver;
