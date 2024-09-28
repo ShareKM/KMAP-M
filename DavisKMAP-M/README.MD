@@ -64,7 +64,7 @@ This folder contains MATLAB wrapper functions that are designed to interact with
      - `foldOut`: path to store output parametric images.
      - `fileBIF`: path to input function.
      - `Dopt`: Optional settings structure.
-'Note': This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code. The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
+`Note`: This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code. The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
 
 ## Usage Instructions
 
