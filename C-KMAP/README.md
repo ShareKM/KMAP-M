@@ -7,7 +7,7 @@
 The **C-KMAP Toolkit** is a core C/C++ source code library to define and implement the input function, kinetic models, optimization algorithms, and utility functions. For parametric imaging (voxel-wise kinetic modeling), it adopts the OpenMP parallel programming model for acceleration. 
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/31573cb0-b1f5-4c50-8a51-8da9490eb214" width="800">
+  <img src="https://github.com/user-attachments/assets/31573cb0-b1f5-4c50-8a51-8da9490eb214" width="1000">
 </div>
 
 The toolkit also includes wapper functions designed to integrate the kinetic modeling implementations for other programming languages such as MATLAB.
