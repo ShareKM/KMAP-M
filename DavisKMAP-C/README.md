@@ -1,4 +1,4 @@
-# C-KMAP Development Kit
+# C-KMAP Toolkit
 
 ## Overview
 
