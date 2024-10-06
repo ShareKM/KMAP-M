@@ -129,7 +129,7 @@ C = C(:,mask);
 %% Define fit options
 
 % fit option 
-opt.Decay      = log(2)/109.8;
+opt.Decay      = 0;
 opt.TimeStep   = 1.0;
 opt.PbrParam   = [1 0 0];
 opt.ScanTime   = scant;
