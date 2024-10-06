@@ -11,7 +11,7 @@ t = mean(scant,2);
 
 % optional setting
 opt.ScanTime = scant;
-opt.Decay    = log(2)/109.8;
+opt.Decay    = 0;
 opt.TimeStep = 1.0;
 opt.PbrParam = [1 0 0];
 
