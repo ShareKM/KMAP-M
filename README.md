@@ -25,7 +25,7 @@ The toolbox includes several folders:
 
 ## MATLAB Path
 
-Before using this toolbox, ensure that all the files are available in your MATLAB path. This can be done by running the path setup file `setup.m` in KMAP-M.
+Before using this toolbox, ensure that all the files are available in your MATLAB path. This can be done by running the path setup file `setup.m` under the main directory of KMAP-M.
 
 ## Ongoing Effort
 
