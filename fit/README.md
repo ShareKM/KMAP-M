@@ -4,7 +4,7 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 
 ## Files in This Folder
 
-### Kinetic Fitting with Compartmental Models
+### Fitting with Compartmental Models
 
 - **kfit_1tcm.m**  
    Wrapper function for fitting time-activity curves (TACs) using the one-tissue compartment model (2TCM). This function calls the compiled MEX binary `kfit_2tcm_mex_omp` to perform the actual optimization.  
