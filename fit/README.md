@@ -26,7 +26,7 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 
 ## Usage Instructions
 
-Examples of using many of the functions can be found in the `demo` folder.
+Examples of using many of the functions can be found in the `KMAP-M/demo` folder.
 
 Before using any of these wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `KMAP-C/mex` directory.
 
