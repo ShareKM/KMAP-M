@@ -6,7 +6,7 @@ The **Open Kinetic Modeling and Analysis Package (KMAP)** is an open-source soft
 
 ## OpenKMAP-M Toolbox
 
-<div align="center">
+<div align="left">
   <img src="https://github.com/user-attachments/assets/5079dd48-e136-466c-95ca-14155b15781d" width="500" >
 </div>
 
