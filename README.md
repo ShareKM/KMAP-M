@@ -6,6 +6,10 @@ The **Open Kinetic Modeling and Analysis Package (KMAP)** is an open-source soft
 
 ## OpenKMAP-M Toolbox
 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/5079dd48-e136-466c-95ca-14155b15781d" width="500" >
+</div>
+
 **KMAP-M** is a MATLAB toolbox built on the C/C++ library of OpenKMAP for tracer kinetic modeling and can be independently used in MATLAB under Windows, Linux, and Macintosh systems. The toolbox also includes other kinetic modeling approaches that can be easily and efficiently implemented in MATLAB, such as the Patlak plot. 
 
 The toolbox includes several folders:
