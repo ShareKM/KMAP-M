@@ -4,18 +4,23 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 
 ## Files in This Folder
 
-### Fitting with Compartmental Models
-
 - **kfit_1tcm.m**  
-   Wrapper function for fitting time-activity curves (TACs) using the one-tissue compartment model (2TCM). This function calls the compiled MEX binary `kfit_2tcm_mex_omp` to perform the actual optimization.  
+   Wrapper function for fitting time-activity curves (TACs) using the one-tissue compartment model (2TCM). This function calls the compiled MEX binary `kfit_2tcm_mex_omp` to perform the actual optimization.
+   - **Inputs**:  
+     - `ct`: Measured TAC data.
+     - `cp`: Plasma input function.
+     - `scant`: Scan time data (start and end times in seconds).
+     - `k0`: Initial kinetic parameters.
+     - `opt`: Fitting options structure.
+     - `wt`: Frame weights (optional).
+     - `cwb`: Whole blood data (optional).
+   - **Outputs**:  
+     - `k`: Fitted kinetic parameters.
+     - `cfit`: Fitted TAC curve.
+     - `ctis`: Tissue response function (optional).  
    
 - **kfit_2tcm.m**  
    Wrapper function for fitting TACs using the two-tissue compartment model (2TCM). This function calls the compiled MEX binary `kfit_2tcm_mex_omp` to perform the actual optimization.  
-
-- **kfit_liver.m**  
-   Wrapper function for fitting TACs using a liver model with seven parameters. This function calls the compiled MEX binary `kfit_liver_mex_omp` for optimization.
-
-
    - **Inputs**:  
      - `ct`: Measured TAC data.
      - `cp`: Plasma input function.
@@ -28,11 +33,10 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
      - `k`: Fitted kinetic parameters.
      - `cfit`: Fitted TAC curve.
      - `ctis`: Tissue response function (optional).
-
-All of these functions have the following Inputs and Outputs:
-
+- **kfit_liver.m**  
+   Wrapper function for fitting TACs using a liver model with seven parameters. This function calls the compiled MEX binary `kfit_liver_mex_omp` for optimization.
    - **Inputs**:  
-     - `ct`: Measured time-activity curve (TAC) data.
+     - `ct`: Measured TAC data.
      - `cp`: Plasma input function.
      - `scant`: Scan time data (start and end times in seconds).
      - `k0`: Initial kinetic parameters.
@@ -42,6 +46,7 @@ All of these functions have the following Inputs and Outputs:
    - **Outputs**:  
      - `k`: Fitted kinetic parameters.
      - `cfit`: Fitted TAC curve.
+     - `ctis`: Tissue response function (optional).
 
 - **run_ParametricImage.m**  
    This function is a example to show how to generate parametric image with the kinetic models from KMAP package. This function currently use 'kfit_2tcm' to provide 0T/1T/2Ti models for TAC fitting but other models can also be included. 
