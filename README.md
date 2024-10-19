@@ -25,6 +25,10 @@ The toolbox includes several folders:
 
 - `Precompiled_Binaries`: precompiled binaries for TAC fitting with compartmental models. Recompiling using the [KMAP-C](https://github.com/openkmi/KMAP-C) Toolkit may be needed if the precompiled files do not work for your system.
 
+## MATLAB Path
+
+Before using this toolbox, ensure that all the files are available in your MATLAB path. This can be done by running the path setup file `setup.m` in KMAP-M.
+
 ## Ongoing Effort
 
 This open-source package is provided "as is", without warranty. Our team is still iterating many functions in this package. 
