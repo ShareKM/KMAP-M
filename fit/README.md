@@ -26,20 +26,16 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 
 ## Usage Instructions
 
-Examples of using many of the functions can be found in the `KMAP-M/demo` folder.
-
-Before using any of those wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `KMAP-C/mex` directory.
-
-**Note:** The folder `KMAP-C/mex` contains both the MEX files and their precompiled binaries for different operating systems.  
-- **Precompiled Binaries**: The precompiled MEX binaries for Windows, Linux, and macOS are organized in separate subdirectories within `KMAP-C/mex`. Use the binaries corresponding to your system architecture (`*.mexw64`, `*.mexa64`, or `*.mexmaci64`).
-- If you wish to recompile the MEX binaries, refer to the `README.md` file inside the `KMAP_mex_files` folder for compilation instructions.
-
 For example, to use the `kfit_2tcm.m` wrapper, you can call the function like this:
 
 ```matlab
 [k, cfit] = kfit_2tcm(ct, cp, scant, k0, opt);
 ```
+Specific examples of using many of the functions can be found in the `KMAP-M/demo` folder.
+
 Ensure that the inputs are prepared according to the function specifications (refer to each function’s help documentation in MATLAB).
+
+Before using any of those wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `KMAP-C/mex` directory. If you wish to recompile the MEX binaries, refer to the `README.md` file inside the `KMAP-C/mex` folder for compilation instructions.
 
 ### Optional Settings (`opt`)
 
