@@ -1,6 +1,6 @@
 # Open KMAP-M Toolbox
 
-<div align="left">
+<div align="center">
   <img src="https://github.com/user-attachments/assets/5079dd48-e136-466c-95ca-14155b15781d" width="400" >
 </div>
 
