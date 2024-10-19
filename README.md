@@ -17,7 +17,9 @@ The toolbox includes serveral folders:
 
 - `data`: Data used for testing and demonstrating the code in this toolbox
 
-- `Precompiled_Binaries`: precompiled binaries for TAC fitting with compartmental models. Recompiling may be needed if the precompiled files do not work for your system.
+- `utils`: Utility functions 
+
+- `Precompiled_Binaries`: precompiled binaries for TAC fitting with compartmental models. Recompiling using [KMAP-C](https://github.com/openkmi/KMAP-C) may be needed if the precompiled files do not work for your system.
 
 ## Ongoing Effort
 
