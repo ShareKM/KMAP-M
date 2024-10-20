@@ -1,9 +1,13 @@
 % This is a demo file to test Patlak Plot with a real TAC
+%
+% Guobao Wang @ UC Davis, Oct 19, 2024
+%
+
 clear; clc
 run('../setup.m');
 
 %% load data
-load('/Users/gbwang/Documents/GitHub/DavisKMAP/DavisKMAP-M/demo/demo_realdata/data/demo_2tcm_realdata.mat');
+load('../data/demo_2tcm_realdata.mat');
 
 tac = GM;
 scant = [cumsum([0; dt(1:end-1)]), cumsum(dt)];
@@ -25,3 +29,7 @@ ylabel('Patlak y-axis');
 set(gca,'FontSize',14);
 title('Patlak Plot')
 legend('Noisy','Fitted','Location','Best')
+
+% the slope and intercept
+fprintf('Patlak slope: %4.3g\n', Ki);
+fprintf('Patlak intercept: %4.3g\n', b);

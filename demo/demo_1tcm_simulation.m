@@ -16,6 +16,7 @@ opt.PbrParam = [1 0 0];
 % input function
 Cp = feng(t);
 Cp(1) = 0;
+
 % generating noise-free TAC
 k0 = [0.05 0.81 0.38 10]'; % = [fv K1 k2 time_delay]
 c = ktac_1tcm(k0, Cp, scant, opt);

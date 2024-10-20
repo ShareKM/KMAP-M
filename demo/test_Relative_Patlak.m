@@ -1,9 +1,13 @@
 % This is a demo file to test the Relative Patlak (RP) plot with a real TAC
+%
+% Guobao Wang @ UC Davis, Oct 19, 2024
+%
+
 clear; clc
 run('../setup.m');
 
 %% load data
-load('/Users/gbwang/Documents/GitHub/DavisKMAP/DavisKMAP-M/demo/demo_realdata/data/demo_2tcm_realdata.mat');
+load('../data/demo_2tcm_realdata.mat');
 
 tac = GM;
 scant = [cumsum([0; dt(1:end-1)]), cumsum(dt)];
@@ -35,3 +39,7 @@ ylabel('Y-axis of the Relative Patlak Plot');
 title('Relative Patlak Plot')
 set(gca,'FontSize',14);
 legend('Noisy','Fitted','Location','Best')
+
+% the slope and intercept of the Relative Patlak plot
+fprintf('Relative Patlak slope: %4.3g\n', Ki_RP);
+fprintf('Relative Patlak intercept: %4.3g\n', b_RP);
