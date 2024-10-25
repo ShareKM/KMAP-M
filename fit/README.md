@@ -38,7 +38,7 @@ Specific examples of using many of the functions can be found in the `KMAP-M/dem
 
 Ensure that the inputs are prepared according to the function specifications (refer to each function’s help documentation in MATLAB).
 
-Before using any of those wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `KMAP-C/mex` directory. If you wish to recompile the MEX binaries, refer to the `README.md` file inside the `KMAP-C/mex` folder for compilation instructions.
+Before using any of those wrapper functions, ensure that the compiled MEX binaries (e.g., `kfit_2tcm_mex_omp`, `kfit_liver_mex_omp`) are available in your MATLAB path. These binaries should have been compiled using the appropriate source files in the `KMAP-C/mex` directory. If you wish to recompile the MEX binaries, refer to the `README.md` file inside the [`KMAP-C/mex`](https://github.com/openkmi/KMAP-C/tree/main/mex) folder for compilation instructions.
 
 ### Optional Settings (`opt`)
 
