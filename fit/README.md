@@ -5,7 +5,7 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 ## Files in This Folder
 
 - **kfit_1tcm.m**  
-   Wrapper function for fitting time-activity curves (TACs) using the one-tissue compartment model (2TCM). This function calls the compiled MEX binary `kfit_2tcm_mex_omp` to perform the actual optimization.
+   Wrapper function for fitting time-activity curves (TACs) using the one-tissue compartment model (1TCM). This function calls the compiled MEX binary `kfit_1tcm_mex_omp` to perform the actual optimization.
    
 - **kfit_2tcm.m**  
    Wrapper function for fitting TACs using the two-tissue compartment model (2TCM). This function calls the compiled MEX binary `kfit_2tcm_mex_omp` to perform the actual optimization.  
@@ -22,7 +22,8 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 - **run_ParametricImage.m**  
    This function is an example of how to generate parametric images with the kinetic models from the KMAP package. This function currently uses 'kfit_2tcm' to provide 0T/1T/2Ti models for TAC fitting but other models can also be included. 
 
-   `Note`: This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code. The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
+   `Note`: This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code.
+  The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
 
 ## Usage Instructions
 
