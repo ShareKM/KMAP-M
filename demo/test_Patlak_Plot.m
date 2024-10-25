@@ -1,6 +1,6 @@
 % This is a demo file to test Patlak Plot with a real TAC
 %
-% Guobao Wang @ UC Davis, Oct 19, 2024
+% GBW, Oct 19, 2024
 %
 
 clear; clc
