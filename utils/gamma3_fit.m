@@ -1,7 +1,7 @@
 function [p, u] = gamma3_fit(cp, t, p0, tdelay)
 % Fit a blood input function using the gamma function
 %
-% gbwagn@ucdavis.edu Aug-24-2017
+% gbwang@ucdavis.edu Aug-24-2017
 %
 
 % check input
