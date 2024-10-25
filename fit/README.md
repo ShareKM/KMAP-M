@@ -20,7 +20,7 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
    A Matlab function that implements the Replative Patlak plot method which does not require the early-time input function but only late time points.
   
 - **run_ParametricImage.m**  
-   This function is an example of how to generate parametric images with the kinetic models from the KMAP package. This function currently uses 'kfit_2tcm' to provide 0T/1T/2Ti models for TAC fitting but other models can also be included. 
+   This function is an example of how to generate parametric images with the kinetic models from the KMAP package. This function currently uses 'kfit_2tcm' to provide 0T/1T/2T models for TAC fitting but other models can also be included. 
 
 >[!NOTE]
 >This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code.
