@@ -22,9 +22,9 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 - **run_ParametricImage.m**  
    This function is an example of how to generate parametric images with the kinetic models from the KMAP package. This function currently uses 'kfit_2tcm' to provide 0T/1T/2Ti models for TAC fitting but other models can also be included. 
 
-   `Note`:
-  This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code.
-  The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
+>[!NOTE]
+>This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code.
+>The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
 
 ## Usage Instructions
 
