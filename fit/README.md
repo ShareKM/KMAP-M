@@ -24,6 +24,7 @@ This folder contains both original MATLAB code for kinetic fitting (e.g., the Pa
 
 >[!NOTE]
 >This function requires an additional package 'PLOT_v1.0' which can be downloaded from https://wanglab.faculty.ucdavis.edu/code.
+>
 >The image data for testing this function can be obtained from https://drive.google.com/drive/folders/1OWG0FMlhuZL3vnv_fswXSaqXo8_762_5?usp=drive_link. 
 
 ## Usage Instructions
