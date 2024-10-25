@@ -1,4 +1,4 @@
-function [ct, st] = ktac_2tcm(k, cp, scant, opt, cwb)
+function [ct, st] = ktac_1tcm(k, cp, scant, opt, cwb)
 %--------------------------------------------------------------------------
 % Generate time-activity curves (TACs) using the two-tissue compartmental model.
 %
@@ -18,7 +18,7 @@ function [ct, st] = ktac_2tcm(k, cp, scant, opt, cwb)
 % - st: Sensitivity matrix, which provides the derivatives of the TAC with 
 %       respect to each kinetic parameter. This is only computed if required.
 %
-% This function serves as a wrapper for the compiled MEX function `ktac_2tcm_mex`,
+% This function serves as a wrapper for the compiled MEX function `ktac_1tcm_mex`,
 % which performs the actual computation of TACs based on the input kinetic parameters.
 %
 % Guobao Wang @ 12-10-2009
@@ -92,9 +92,9 @@ end
 
 % Generate TACs and sensitivity matrix using the compiled MEX function
 if nargout == 2 && size(prm, 2) == 1
-    [ct, st] = ktac_2tcm_mex(prm, scant, cp, cwb, dk, td);
+    [ct, st] = ktac_1tcm_mex(prm, scant, cp, cwb, dk, td);
 else
-    ct = ktac_2tcm_mex(prm, scant, cp, cwb, dk, td);
+    ct = ktac_1tcm_mex(prm, scant, cp, cwb, dk, td);
     st = [];
 end
 
