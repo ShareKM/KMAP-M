@@ -30,6 +30,10 @@ Before using this toolbox, ensure that all the files are available in your MATLA
 >[!NOTE]
 >**Ongoing Effort**: This toolbox is provided “as is” without warranty. The development team is continually updating the toolbox.
 
+## Contributors
+
+See the full list of [Contributors](CONTRIBUTORS.md).
+
 ## Licensing
 
 This repository contains code that is licensed under [MIT License](KMAP-C/LICENSE).
