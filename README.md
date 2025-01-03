@@ -21,7 +21,7 @@ The toolbox includes several folders:
 
 - `utils`: Utility functions 
 
-- `Precompiled_Binaries`: precompiled binaries for TAC fitting with compartmental models. Recompiling using the [KMAP-C](https://github.com/sharekm/KMAP-C) Toolkit may be needed if the precompiled files do not work for your system.
+- `Precompiled_Binaries`: precompiled binaries for TAC fitting with compartmental models. Recompiling using the [**KMAP-C**](https://github.com/sharekm/KMAP-C) Toolkit may be needed if the precompiled files do not work for your system.
 
 ## MATLAB Path
 
