@@ -4,7 +4,7 @@
 
 ## Overview of KMAP
 
-The **Kinetic Modeling and Analysis Package (KMAP)** is an open-source software environment designed to implement and apply various tracer kinetic models for analyzing dynamic positron emission tomography (PET) data. It particularly focuses on addressing the challenges associated with total-body PET kinetic modeling, for example, considering time delay correction and other factors. The main goal of this open-source package is to provide developers of tracer kinetic modeling with a foundational library to build upon, saving them from starting from scratch. The initial version of **KMAP** was developed at the University of California, Davis, and its open-source version was launched to support the Open Kinetic Modeling Initiative ([OpenKMI](https://www.openkmi.org/)).
+The **Kinetic Modeling and Analysis Package (KMAP)** is an open-source software environment designed to implement and apply various tracer kinetic models for analyzing dynamic positron emission tomography (PET) data. It particularly focuses on addressing the challenges associated with total-body PET kinetic modeling, for example, considering time delay correction and other factors. The main goal of this open-source package is to provide developers of tracer kinetic modeling with a foundational library to build upon, saving them from starting from scratch. The initial version of **KMAP** was developed at the University of California, Davis, and its open-source version was launched to support the [Open Kinetic Modeling Initiative](https://www.openkmi.org/).
 
 ## The KMAP-M Toolbox
 
